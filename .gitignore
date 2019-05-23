@@ -1,0 +1,11 @@
+.settings/
+.project
+*.classpath
+service/logs/
+.metadata/
+web/logs/
+out.txt
+bin/
+
+
+web/WebContent/META-INF/MANIFEST.MF
