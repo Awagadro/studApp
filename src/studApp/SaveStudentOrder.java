@@ -2,8 +2,7 @@ package studApp;
 
 public class SaveStudentOrder {
 	public static void main(String[] args) {
-		StudentOrder so;
-		so = new StudentOrder();
+		StudentOrder so = new StudentOrder();
 		so.hFirstName = "Алексей";
 		so.hLastName = "Петров";
 		so.wFirstName = "Галина";
