@@ -1,4 +1,15 @@
-package studApp;
+package edu.dkravchuk.studentorder;
+
+import edu.dkravchuk.studentorder.domain.AnswerChildren;
+import edu.dkravchuk.studentorder.domain.AnswerCityRegister;
+import edu.dkravchuk.studentorder.domain.AnswerStudent;
+import edu.dkravchuk.studentorder.domain.AnswerWedding;
+import edu.dkravchuk.studentorder.domain.StudentOrder;
+import edu.dkravchuk.studentorder.mail.MailSender;
+import edu.dkravchuk.studentorder.validator.ChildrenValidator;
+import edu.dkravchuk.studentorder.validator.CityRegisterValidator;
+import edu.dkravchuk.studentorder.validator.StudentValidator;
+import edu.dkravchuk.studentorder.validator.WeddingValidator;
 
 public class StudentOrderValidator {
 
