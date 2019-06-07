@@ -1,12 +1,11 @@
 package edu.dkravchuk.studentorder;
 
-import edu.dkravchuk.studentorder.domain.Adult;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
 	public static void main(String[] args) {
-		
-		StudentOrder so = buildStudentOrder();
+
+		StudentOrder so = buildStudentOrder(199);
 
 		long ans = saveStudentOrder(so);
 		System.out.println(ans);
@@ -19,12 +18,9 @@ public class SaveStudentOrder {
 		return answer;
 	}
 
-	public static StudentOrder buildStudentOrder() {
+	public static StudentOrder buildStudentOrder(long id) {
 		StudentOrder so = new StudentOrder();
-		Adult husband = new Adult();
-//		husband.setSurName("Петров");
-//		so.setHusband(husband);
-
+		so.setStudentOrderId(id);
 		return so;
 
 	}
