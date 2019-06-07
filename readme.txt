@@ -1,1 +1,1 @@
-studAPP
+https://github.com/java-webinars/java-project
