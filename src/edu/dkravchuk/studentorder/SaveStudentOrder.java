@@ -1,5 +1,6 @@
 package edu.dkravchuk.studentorder;
 
+import edu.dkravchuk.studentorder.domain.Adult;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
@@ -21,6 +22,11 @@ public class SaveStudentOrder {
 	public static StudentOrder buildStudentOrder(long id) {
 		StudentOrder so = new StudentOrder();
 		so.setStudentOrderId(id);
+
+		Adult husband = new Adult("Васильев", "Андрей", "Петрович", null);
+		Adult wife = new Adult("Васильева", "Алина", "Петровна", null);
+		Adult child = new Adult("Васильева", "Кира", "Андреевна", null);
+
 		return so;
 
 	}

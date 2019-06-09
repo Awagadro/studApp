@@ -5,6 +5,7 @@ import edu.dkravchuk.studentorder.domain.AnswerCityRegister;
 import edu.dkravchuk.studentorder.domain.AnswerStudent;
 import edu.dkravchuk.studentorder.domain.AnswerWedding;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
+import edu.dkravchuk.studentorder.exception.CityRegisterExsception;
 import edu.dkravchuk.studentorder.mail.MailSender;
 import edu.dkravchuk.studentorder.validator.ChildrenValidator;
 import edu.dkravchuk.studentorder.validator.CityRegisterValidator;
@@ -26,14 +27,14 @@ public class StudentOrderValidator {
 		mailSender = new MailSender();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CityRegisterExsception {
 
 		StudentOrderValidator sov = new StudentOrderValidator();
 		sov.checkAll();
 
 	}
 
-	public void checkAll() {
+	public void checkAll() throws CityRegisterExsception {
 		StudentOrder[] soArray = readStudentOrders();
 
 		// for (int c = 0; c < soArray.length; c++) {
@@ -57,7 +58,7 @@ public class StudentOrderValidator {
 		return soArray;
 	}
 
-	public void checkOneOrder(StudentOrder so) {
+	public void checkOneOrder(StudentOrder so) throws CityRegisterExsception {
 		AnswerCityRegister cityAnswer = checkCityRegister(so);
 		AnswerWedding wedAnswer = checkWedding(so);
 		AnswerChildren childAnswer = checkChildren(so);
@@ -82,7 +83,7 @@ public class StudentOrderValidator {
 		return weddingVal.checkWedding(so);
 	}
 
-	public AnswerCityRegister checkCityRegister(StudentOrder so) {
+	public AnswerCityRegister checkCityRegister(StudentOrder so) throws CityRegisterExsception {
 		return cityRegisterVal.checkCityRegister(so);
 	}
 

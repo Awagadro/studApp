@@ -3,6 +3,10 @@ package edu.dkravchuk.studentorder.domain;
 import java.time.LocalDate;
 
 public class Adult extends Person {
+	public Adult(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
+		super(surName, givenName, patronymic, dateOfBirth);
+	}
+
 	private String passportSeria;
 	private String passportNumber;
 

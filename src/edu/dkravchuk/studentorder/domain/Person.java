@@ -9,10 +9,15 @@ public abstract class Person {
 	private LocalDate dateOfBirth;
 	private Address address;
 
-	public Person() {
-		System.out.println("New Person is created");
-	}
 	
+	public Person(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
+		super();
+		this.surName = surName;
+		this.givenName = givenName;
+		this.patronymic = patronymic;
+		this.dateOfBirth = dateOfBirth;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
