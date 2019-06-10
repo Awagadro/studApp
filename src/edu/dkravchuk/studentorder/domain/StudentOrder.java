@@ -1,11 +1,40 @@
 package edu.dkravchuk.studentorder.domain;
 
+import java.time.LocalDate;
+
 public class StudentOrder {
 
 	private long studentOrderId;
 	private Adult husband;
 	private Adult wife;
 	private Child child;
+	private String marriageCertificateId;
+	private LocalDate marriageDate;
+	private String marriageOffice;
+
+	public String getMarriageCertificateId() {
+		return marriageCertificateId;
+	}
+
+	public void setMarriageCertificateId(String string) {
+		this.marriageCertificateId = string;
+	}
+
+	public LocalDate getMarriageDate() {
+		return marriageDate;
+	}
+
+	public void setMarriageDate(LocalDate marriageDate) {
+		this.marriageDate = marriageDate;
+	}
+
+	public String getMarriageOffice() {
+		return marriageOffice;
+	}
+
+	public void setMarriageOffice(String marriageOffice) {
+		this.marriageOffice = marriageOffice;
+	}
 
 	public long getStudentOrderId() {
 		return studentOrderId;

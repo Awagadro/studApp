@@ -2,3 +2,6 @@
 /CityRegisterValidator.class
 /StudentValidator.class
 /WeddingValidator.class
+/CityRegisterChecker.class
+/FakeCityRegisterChecker.class
+/RealCityRegisterChecker.class
