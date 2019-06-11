@@ -1,6 +1,6 @@
-package edu.dkravchuk.studentorder.domain;
+package edu.dkravchuk.studentorder.domain.register;
 
-public class CityRegisterCheckerResponse {
+public class CityRegisterResponse {
 	private boolean isExisting;
 	private Boolean isTemporal;
 

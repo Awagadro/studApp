@@ -1,11 +1,14 @@
 package edu.dkravchuk.studentorder;
 
-import edu.dkravchuk.studentorder.domain.AnswerChildren;
-import edu.dkravchuk.studentorder.domain.AnswerCityRegister;
-import edu.dkravchuk.studentorder.domain.AnswerStudent;
-import edu.dkravchuk.studentorder.domain.AnswerWedding;
+import java.util.LinkedList;
+import java.util.List;
+
 import edu.dkravchuk.studentorder.domain.StudentOrder;
-import edu.dkravchuk.studentorder.exception.CityRegisterExsception;
+import edu.dkravchuk.studentorder.domain.children.AnswerChildren;
+import edu.dkravchuk.studentorder.domain.register.AnswerCityRegister;
+import edu.dkravchuk.studentorder.domain.student.AnswerStudent;
+import edu.dkravchuk.studentorder.domain.wedding.AnswerWedding;
+import edu.dkravchuk.studentorder.exception.CityRegisterException;
 import edu.dkravchuk.studentorder.mail.MailSender;
 import edu.dkravchuk.studentorder.validator.ChildrenValidator;
 import edu.dkravchuk.studentorder.validator.CityRegisterValidator;
@@ -27,38 +30,34 @@ public class StudentOrderValidator {
 		mailSender = new MailSender();
 	}
 
-	public static void main(String[] args) throws CityRegisterExsception {
+	public static void main(String[] args) throws CityRegisterException {
 
 		StudentOrderValidator sov = new StudentOrderValidator();
 		sov.checkAll();
 
 	}
 
-	public void checkAll() throws CityRegisterExsception {
-		StudentOrder[] soArray = readStudentOrders();
+	public void checkAll() throws CityRegisterException {
+		List<StudentOrder> soList = readStudentOrders();
 
-		// for (int c = 0; c < soArray.length; c++) {
-		// System.out.println();
-		// checkOneOrder(soArray[c]);
-		// }
-
-		for (StudentOrder so : soArray) {
+		for (StudentOrder so : soList) {
 			System.out.println();
 			checkOneOrder(so);
 		}
 
 	}
 
-	public StudentOrder[] readStudentOrders() {
-		StudentOrder[] soArray = new StudentOrder[3];
-		for (int c = 0; c < soArray.length; c++) {
-			soArray[c] = SaveStudentOrder.buildStudentOrder(c);
+	public List<StudentOrder> readStudentOrders() {
+		List<StudentOrder> soList = new LinkedList<>();
+		for (int c = 0; c < 5; c++) {
+			StudentOrder so = SaveStudentOrder.buildStudentOrder(c);
+			soList.add(so);
 		}
 
-		return soArray;
+		return soList;
 	}
 
-	public void checkOneOrder(StudentOrder so) throws CityRegisterExsception {
+	public void checkOneOrder(StudentOrder so) throws CityRegisterException {
 		AnswerCityRegister cityAnswer = checkCityRegister(so);
 		// AnswerWedding wedAnswer = checkWedding(so);
 		// AnswerChildren childAnswer = checkChildren(so);
@@ -83,7 +82,7 @@ public class StudentOrderValidator {
 		return weddingVal.checkWedding(so);
 	}
 
-	public AnswerCityRegister checkCityRegister(StudentOrder so) throws CityRegisterExsception {
+	public AnswerCityRegister checkCityRegister(StudentOrder so) {
 		return cityRegisterVal.checkCityRegister(so);
 	}
 

@@ -1,7 +1,7 @@
 package edu.dkravchuk.studentorder.validator;
 
-import edu.dkravchuk.studentorder.domain.AnswerChildren;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
+import edu.dkravchuk.studentorder.domain.children.AnswerChildren;
 
 public class ChildrenValidator {
 	public AnswerChildren checkChildren(StudentOrder so) {

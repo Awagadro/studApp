@@ -1,10 +1,11 @@
-package edu.dkravchuk.studentorder.validator;
+package edu.dkravchuk.studentorder.validator.register;
 
 import edu.dkravchuk.studentorder.domain.Adult;
 import edu.dkravchuk.studentorder.domain.Child;
-import edu.dkravchuk.studentorder.domain.CityRegisterCheckerResponse;
 import edu.dkravchuk.studentorder.domain.Person;
-import edu.dkravchuk.studentorder.exception.CityRegisterExsception;
+import edu.dkravchuk.studentorder.domain.register.CityRegisterResponse;
+import edu.dkravchuk.studentorder.exception.CityRegisterException;
+import edu.dkravchuk.studentorder.exception.TransportException;
 
 public class FakeCityRegisterChecker implements CityRegisterChecker {
 
@@ -14,10 +15,12 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
 	private static final String BAD_2 = "2001";
 	private static final String ERROR_1 = "1002";
 	private static final String ERROR_2 = "2002";
+	private static final String ERROR_T_1 = "1003";
+	private static final String ERROR_T_2 = "2003";
 
-	public CityRegisterCheckerResponse checkPerson(Person person) throws CityRegisterExsception {
+	public CityRegisterResponse checkPerson(Person person) throws CityRegisterException, TransportException {
 
-		CityRegisterCheckerResponse res = new CityRegisterCheckerResponse();
+		CityRegisterResponse res = new CityRegisterResponse();
 
 		if (person instanceof Adult) {
 			Adult t = (Adult) person;
@@ -31,7 +34,11 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
 				res.setExisting(false);
 			}
 			if (ps.equals(ERROR_1) || ps.equals(ERROR_2)) {
-				CityRegisterExsception ex = new CityRegisterExsception("FakeError" + ps);
+				CityRegisterException ex = new CityRegisterException("1", "GRNError" + ps);
+				throw ex;
+			}
+			if (ps.equals(ERROR_T_1) || ps.equals(ERROR_T_2)) {
+				TransportException ex = new TransportException("TransportError" + ps);
 				throw ex;
 			}
 		}

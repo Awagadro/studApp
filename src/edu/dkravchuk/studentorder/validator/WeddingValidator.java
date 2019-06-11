@@ -1,7 +1,7 @@
 package edu.dkravchuk.studentorder.validator;
 
-import edu.dkravchuk.studentorder.domain.AnswerWedding;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
+import edu.dkravchuk.studentorder.domain.wedding.AnswerWedding;
 
 public class WeddingValidator {
 	public AnswerWedding checkWedding(StudentOrder so) {
