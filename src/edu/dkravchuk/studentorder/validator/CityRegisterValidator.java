@@ -23,7 +23,7 @@ public class CityRegisterValidator {
 			CityRegisterCheckerResponse wans = personChecker.checkPerson(so.getWife());
 			CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getChild());
 		} catch (CityRegisterExsception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace(System.out);
 		}
 		AnswerCityRegister ans = new AnswerCityRegister();
 		return ans;

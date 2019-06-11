@@ -50,7 +50,7 @@ public class StudentOrderValidator {
 	}
 
 	public StudentOrder[] readStudentOrders() {
-		StudentOrder[] soArray = new StudentOrder[1];
+		StudentOrder[] soArray = new StudentOrder[3];
 		for (int c = 0; c < soArray.length; c++) {
 			soArray[c] = SaveStudentOrder.buildStudentOrder(c);
 		}

@@ -49,6 +49,7 @@ public class SaveStudentOrder {
 		wife.setStudentId("" + (200000 + id));
 		wife.setAddress(address);
 		so.setWife(wife);
+		
 		// Ребенок
 		Child child = new Child("Петрова", "Ирина", "Викторовна", LocalDate.of(2018, 6, 29));
 		child.setCertificateNumber("" + (300000 + id));
