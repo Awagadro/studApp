@@ -1,19 +1,30 @@
 package edu.dkravchuk.studentorder;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 import edu.dkravchuk.studentorder.domain.Address;
 import edu.dkravchuk.studentorder.domain.Adult;
 import edu.dkravchuk.studentorder.domain.Child;
+import edu.dkravchuk.studentorder.domain.Street;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		Class.forName("org.postgresql.Driver");
+		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jc_student", "postgres", "1");
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
+		while (rs.next()) {
+			System.out.println(rs.getLong(1) + " : " + rs.getString(2));
+		}
 
-		StudentOrder so = buildStudentOrder(199);
-
-		long ans = saveStudentOrder(so);
-		System.out.println(ans);
+		// StudentOrder so = buildStudentOrder(199);
+		// long ans = saveStudentOrder(so);
+		// System.out.println(ans);
 	}
 
 	private static long saveStudentOrder(StudentOrder studentOrder) {
@@ -29,7 +40,8 @@ public class SaveStudentOrder {
 		so.setMarriageCertificateId("" + 123456000 + id);
 		so.setMarriageDate(LocalDate.of(2016, 7, 4));
 		so.setMarriageOffice("Отдел ЗАГС");
-		Address address = new Address("195000", "Заневский пр.", "12", "А", "142");
+		Street street = new Street(1L, "First street");
+		Address address = new Address("195000", street, "12", "А", "142");
 
 		// Муж
 		Adult husband = new Adult("Петров", "Виктор", "Сергеевич", LocalDate.of(1997, 8, 24));
@@ -65,7 +77,7 @@ public class SaveStudentOrder {
 		child2.setIssueDepartment("Отдел ЗАГС №" + id);
 		child2.setAddress(address);
 		so.addChild(child2);
-		
+
 		return so;
 
 	}
