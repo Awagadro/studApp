@@ -1,11 +1,9 @@
 package edu.dkravchuk.studentorder;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.List;
 
+import edu.dkravchuk.studentorder.dao.DictionaryDaoImpl;
 import edu.dkravchuk.studentorder.domain.Address;
 import edu.dkravchuk.studentorder.domain.Adult;
 import edu.dkravchuk.studentorder.domain.Child;
@@ -14,12 +12,9 @@ import edu.dkravchuk.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
 	public static void main(String[] args) throws Exception {
-		Class.forName("org.postgresql.Driver");
-		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jc_student", "postgres", "1");
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
-		while (rs.next()) {
-			System.out.println(rs.getLong(1) + " : " + rs.getString(2));
+		List<Street> d = new DictionaryDaoImpl().findStreets("sec");
+		for (Street street : d) {
+			System.out.println(street.getStreetName());
 		}
 
 		// StudentOrder so = buildStudentOrder(199);
