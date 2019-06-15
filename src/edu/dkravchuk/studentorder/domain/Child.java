@@ -8,9 +8,8 @@ public class Child extends Person {
 	}
 
 	private String certificateNumber;
-
 	private LocalDate issueDate;
-	private String issueDepartment;
+	private RegisterOffice registerOffice;
 
 	public String getCertificateNumber() {
 		return certificateNumber;
@@ -28,11 +27,12 @@ public class Child extends Person {
 		this.issueDate = issueDate;
 	}
 
-	public String getIssueDepartment() {
-		return issueDepartment;
+	public RegisterOffice getRegisterOffice() {
+		return registerOffice;
 	}
 
-	public void setIssueDepartment(String issueDepartment) {
-		this.issueDepartment = issueDepartment;
+	public void setRegisterOffice(RegisterOffice registerOffice) {
+		this.registerOffice = registerOffice;
 	}
+
 }
