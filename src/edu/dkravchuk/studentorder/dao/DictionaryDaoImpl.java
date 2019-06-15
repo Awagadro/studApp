@@ -14,13 +14,11 @@ import edu.dkravchuk.studentorder.exception.DaoException;
 
 public class DictionaryDaoImpl implements DictionaryDao {
 
-	private static final String GET_STREET = "SELECT street_code FROM jc_street WHERE UPPER (street_name) LIKE UPPER (?)";
+	private static final String GET_STREET = "SELECT street_code, street_name FROM jc_street WHERE UPPER (street_name) LIKE UPPER (?)";
 
 	private Connection getConnection() throws SQLException {
-		Connection con = DriverManager.getConnection(
-				Config.getProperty(Config.DB_URL),
-				Config.getProperty(Config.DB_LOGIN), 
-				Config.getProperty(Config.DB_PASSWORD));
+		Connection con = DriverManager.getConnection(Config.getProperty(Config.DB_URL),
+				Config.getProperty(Config.DB_LOGIN), Config.getProperty(Config.DB_PASSWORD));
 		return con;
 
 	}

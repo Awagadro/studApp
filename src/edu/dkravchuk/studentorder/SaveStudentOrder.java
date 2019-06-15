@@ -12,7 +12,7 @@ import edu.dkravchuk.studentorder.domain.StudentOrder;
 
 public class SaveStudentOrder {
 	public static void main(String[] args) throws Exception {
-		List<Street> d = new DictionaryDaoImpl().findStreets("sec");
+		List<Street> d = new DictionaryDaoImpl().findStreets("firs");
 		for (Street street : d) {
 			System.out.println(street.getStreetName());
 		}
