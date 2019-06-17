@@ -9,3 +9,7 @@
 /Address.class
 /CityRegisterCheckerResponse.class
 /Street.class
+/CountryArea.class
+/PassportOffice.class
+/RegisterOffice.class
+/StudentOrderStatus.class
