@@ -3,6 +3,7 @@ package edu.dkravchuk.studentorder.domain;
 import java.time.LocalDate;
 
 public class Child extends Person {
+
 	public Child(String surName, String givenName, String patronymic, LocalDate dateOfBirth) {
 		super(surName, givenName, patronymic, dateOfBirth);
 	}
