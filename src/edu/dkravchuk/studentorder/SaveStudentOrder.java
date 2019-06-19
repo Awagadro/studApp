@@ -1,6 +1,7 @@
 package edu.dkravchuk.studentorder;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import edu.dkravchuk.studentorder.dao.StudentOrderDao;
 import edu.dkravchuk.studentorder.dao.StudentOrderDaoImpl;
@@ -11,6 +12,7 @@ import edu.dkravchuk.studentorder.domain.PassportOffice;
 import edu.dkravchuk.studentorder.domain.RegisterOffice;
 import edu.dkravchuk.studentorder.domain.Street;
 import edu.dkravchuk.studentorder.domain.StudentOrder;
+import edu.dkravchuk.studentorder.domain.University;
 
 public class SaveStudentOrder {
 	public static void main(String[] args) throws Exception {
@@ -57,8 +59,13 @@ public class SaveStudentOrder {
 		StudentOrder so = buildStudentOrder(10);
 		StudentOrderDao dao = new StudentOrderDaoImpl();
 		Long id = dao.saveStudentOrder(so);
+		// System.out.println(id);
 
-		System.out.println(id);
+		List<StudentOrder> studentOrders = dao.getStudentOrders();
+		for (StudentOrder s : studentOrders) {
+			System.out.println(s.getStudentOrderId());
+		}
+
 		// long ans = saveStudentOrder(so);
 		// System.out.println(ans);
 
@@ -91,8 +98,10 @@ public class SaveStudentOrder {
 		husband.setIssueDate(LocalDate.of(2017, 9, 15));
 		PassportOffice po1 = new PassportOffice(1L, "", "");
 		husband.setPassportOffice(po1);
-		husband.setStudentId("" + (100000 + id));
+		husband.setStudentId("" + (100000 + id));// Remove
+		husband.setStudentId("HH12345");
 		husband.setAddress(address);
+		husband.setUniversity(new University(2L, ""));
 		so.setHusband(husband);
 
 		// Жена
@@ -102,8 +111,10 @@ public class SaveStudentOrder {
 		wife.setIssueDate(LocalDate.of(2018, 9, 15));
 		PassportOffice po2 = new PassportOffice(2L, "", "");
 		wife.setPassportOffice(po2);
-		wife.setStudentId("" + (200000 + id));
+		wife.setStudentId("" + (200000 + id));// Remove
+		wife.setStudentId("WW12345");
 		wife.setAddress(address);
+		wife.setUniversity(new University(1L, ""));
 		so.setWife(wife);
 
 		// Ребенок1

@@ -7,20 +7,24 @@ public class Adult extends Person {
 		super(surName, givenName, patronymic, dateOfBirth);
 	}
 
+	public Adult() {
+		super();
+	}
+
 	private String passportSeria;
 	private String passportNumber;
 
 	private LocalDate issueDate;
 	private PassportOffice passportOffice;
 
-	private String university;
+	private University university;
 	private String studentId;
 
-	public String getUniversity() {
+	public University getUniversity() {
 		return university;
 	}
 
-	public void setUniversity(String university) {
+	public void setUniversity(University university) {
 		this.university = university;
 	}
 
