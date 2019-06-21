@@ -16,6 +16,10 @@ public class Address {
 		this.apartment = apartment;
 	}
 
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPostCode() {
 		return postCode;
 	}
