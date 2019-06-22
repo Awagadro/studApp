@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.dkravchuk.studentorder.config.Config;
 import edu.dkravchuk.studentorder.domain.Address;
@@ -44,10 +45,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 			+ "INNER JOIN jc_passport_office po_w ON po_w.p_office_id = so.w_passport_office_id "
 			+ "WHERE student_order_status = ? ORDER BY student_order_date";
 
-	private static final String SELECY_CHILD = "SELECT soc.*, ro.r_office_area, ro.r_office_name "
+	private static final String SELECT_CHILD = "SELECT soc.*, ro.r_office_area_id, ro.r_office_name "
 			+ "FROM jc_student_child soc "
 			+ "INNER JOIN jc_register_office ro ON ro.r_office_id = soc.c_register_office_id "
-			+ "WHERE soc.student_order_id IN ()";
+			+ "WHERE soc.student_order_id IN ";
 
 	private Connection getConnection() throws SQLException {
 		Connection con = DriverManager.getConnection(Config.getProperty(Config.DB_URL),
@@ -154,8 +155,6 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 			stmt.setInt(1, StudentOrderStatus.START.ordinal());
 			ResultSet rs = stmt.executeQuery();
 
-			List<Long> ids = new LinkedList<Long>();
-
 			while (rs.next()) {
 				StudentOrder so = new StudentOrder();
 				fillStudentOrder(rs, so);
@@ -166,18 +165,27 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 				so.setWife(wife);
 
 				result.add(so);
-				ids.add(so.getStudentOrderId());
 			}
-			StringBuilder sb = new StringBuilder("(");
-			
-			sb.append(")");
-			
 
+			findChildren(con, result);
 			rs.close();
 		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
 		return result;
+	}
+
+	private void findChildren(Connection con, List<StudentOrder> result) throws SQLException {
+		String cl = "("
+				+ result.stream().map(so -> String.valueOf(so.getStudentOrderId())).collect(Collectors.joining(","))
+				+ ")";
+		try (PreparedStatement stmt = con.prepareStatement(SELECT_CHILD + cl)) {
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println(rs.getLong(1) + ":" + rs.getString(3));
+			}
+		}
+
 	}
 
 	private void fillStudentOrder(ResultSet rs, StudentOrder so) throws SQLException {
