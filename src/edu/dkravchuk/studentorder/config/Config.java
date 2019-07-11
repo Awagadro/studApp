@@ -7,6 +7,7 @@ public class Config {
 	public static String DB_URL = "db.url";
 	public static String DB_LOGIN = "db.login";
 	public static String DB_PASSWORD = "db.password";
+	public static String DB_LIMIT = "db.limit";
 
 	private static Properties properties = new Properties();
 
